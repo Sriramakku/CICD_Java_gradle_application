@@ -25,8 +25,7 @@ pipeline{
                 }
             }
         } 
-    }
-    stage("docker build & docker push"){
+        stage("docker build & docker push"){
             steps{
                 script{
                     withCredentials([string(credentialsId: 'docker_pass', variable: 'docker_password')]) {
@@ -35,7 +34,8 @@ pipeline{
                         docker login -u admin -p $docker_password 18.60.89.130:8083 
                         docker push  18.60.89.130:8083/springapp:${VERSION}
                         docker rmi 18.60.89.130:8083/springapp:${VERSION}                       
-                        '''                     
+                        '''                                             
+                    }
                 }
             }
         }
